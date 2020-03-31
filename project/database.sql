@@ -4,7 +4,6 @@ CREATE TABLE [users] (
 	[Password] NVARCHAR(100) NOT NULL,
 	[Date] NVARCHAR(100) NOT NULL
 );
-<<<<<<< HEAD
 
 CREATE TABLE [streetLevelCrimes] (
 	[id] INTEGER  NOT NULL PRIMARY KEY,
@@ -34,7 +33,3 @@ CREATE TABLE [crimeCategories] (
 	[Id] INTEGER  NOT NULL PRIMARY KEY,
 	[name] NVARCHAR(100)  NOT NULL,
 );
-=======
-#add a new table
-
->>>>>>> 6dbcd3ef51090ad4201e47ce0e1d58498aa82c2e
