@@ -45,31 +45,31 @@ crime_url_template = 'https://data.police.uk/api/crimes-street/all-crime?lat={la
 # crimeoutcome_url_template = 'https://data.police.uk/api/crimes-street/outcomes-for-crime?id={id}'
 # categories_url_template = 'https://data.police.uk/api/crime-categories?date={date}'
 
-my_latitude = '51.52369'
-my_longitude = '-0.0395857'
-my_date = '2018-11'
-crime_url = crime_url_template.format(lat = my_latitude, lng = my_longitude, data = my_date)
-resp = requests.get(crime_url)
+# my_latitude = '51.52369'
+# my_longitude = '-0.0395857'
+# my_date = '2018-11'
+# crime_url = crime_url_template.format(lat = my_latitude, lng = my_longitude, data = my_date)
+# resp = requests.get(crime_url)
 
-if resp.ok:
-    result = resp.json()
+# if resp.ok:
+#     result = resp.json()
 
-for r in result:
-    crimes = streetLevelCrimes(id=None if r['id'] == '' else r['id'], 
-                               category=None if r['category'] == '' else r['category'], 
-                               location_type=None if r['location_type'] == '' else r['location_type'], 
-                               latitude=None if r['location']['latitude'] == '' else r['location']['latitude'], 
-                               longitude=None if r['location']['longitude'] == '' else r['location']['longitude'], 
-                               street_id=None if r['location']['street']['id'] == '' else r['location']['street']['id'],
-                               street_name=None if r['location']['street']['id'] == '' else r['location']['street']['id'], 
-                               context=None if r['context'] == '' else r['context'], 
-                               outcome_status=None, 
-                               persistent_id=None if r['persistent_id'] == '' else r['persistent_id'], 
-                               location_subtype=None if r['location_subtype'] == '' else r['location_subtype'], 
-                               month=None if r['month'] == '' else r['month'])
-    session.add(crimes)
+# for r in result:
+#     crimes = streetLevelCrimes(id=None if r['id'] == '' else r['id'], 
+#                                category=None if r['category'] == '' else r['category'], 
+#                                location_type=None if r['location_type'] == '' else r['location_type'], 
+#                                latitude=None if r['location']['latitude'] == '' else r['location']['latitude'], 
+#                                longitude=None if r['location']['longitude'] == '' else r['location']['longitude'], 
+#                                street_id=None if r['location']['street']['id'] == '' else r['location']['street']['id'],
+#                                street_name=None if r['location']['street']['id'] == '' else r['location']['street']['id'], 
+#                                context=None if r['context'] == '' else r['context'], 
+#                                outcome_status=None, 
+#                                persistent_id=None if r['persistent_id'] == '' else r['persistent_id'], 
+#                                location_subtype=None if r['location_subtype'] == '' else r['location_subtype'], 
+#                                month=None if r['month'] == '' else r['month'])
+#     session.add(crimes)
 
-session.commit()
+# session.commit()
 
 # for r in result:
 
@@ -77,3 +77,7 @@ session.commit()
 #     print(x)
 #     print(r['persistent_id'])
     # x = None if r['outcome_status']['category'] == '' else r['outcome_status']['category']
+
+our_user = session.query(streetLevelCrimes).filter_by(name='ed').first() 
+
+print(our_user)
