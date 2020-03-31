@@ -63,7 +63,7 @@ for r in result:
                                street_id=None if r['location']['street']['id'] == '' else r['location']['street']['id'],
                                street_name=None if r['location']['street']['id'] == '' else r['location']['street']['id'], 
                                context=None if r['context'] == '' else r['context'], 
-                               outcome_status=None if r['outcome_status'] == '' else r['outcome_status'], 
+                               outcome_status=None, 
                                persistent_id=None if r['persistent_id'] == '' else r['persistent_id'], 
                                location_subtype=None if r['location_subtype'] == '' else r['location_subtype'], 
                                month=None if r['month'] == '' else r['month'])
@@ -72,6 +72,8 @@ for r in result:
 session.commit()
 
 # for r in result:
-#     x = ''
-#     x = None if r['location']['street']['id'] == '' else r['location']['street']['id']
+
+#     x = None if r['outcome_status'] == '' else r['outcome_status'],
 #     print(x)
+#     print(r['persistent_id'])
+    # x = None if r['outcome_status']['category'] == '' else r['outcome_status']['category']
