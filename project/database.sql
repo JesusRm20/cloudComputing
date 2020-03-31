@@ -7,17 +7,17 @@ CREATE TABLE [users] (
 
 CREATE TABLE [streetLevelCrimes] (
 	[id] INTEGER  NOT NULL PRIMARY KEY,
-	[category] NVARCHAR(100) ,
-	[location_type] NVARCHAR(100) ,
-	[latitude] NVARCHAR(100) ,
-	[longitude] NVARCHAR(100) ,
-	[street_id] NVARCHAR(100),
-	[street_name] NVARCHAR(100) ,
-	[context] NVARCHAR(100),
-	[outcome_status] NVARCHAR(100),
-	[persistent_id] NVARCHAR(100),
-	[location_subtype] NVARCHAR(100),
-	[month] NVARCHAR(100)
+	[category] NVARCHAR(100) DEFAULT 'N/A',
+	[location_type] NVARCHAR(100) DEFAULT 'N/A',
+	[latitude] NVARCHAR(100) DEFAULT 'N/A',
+	[longitude] NVARCHAR(100)  DEFAULT 'N/A',
+	[street_id] NVARCHAR(100) DEFAULT 'N/A',
+	[street_name] NVARCHAR(100)  DEFAULT 'N/A',
+	[context] NVARCHAR(100) DEFAULT 'N/A',
+	[outcome_status] NVARCHAR(100) DEFAULT 'N/A',
+	[persistent_id] NVARCHAR(100) DEFAULT 'N/A',
+	[location_subtype] NVARCHAR(100) DEFAULT 'N/A',
+	[month] NVARCHAR(100) DEFAULT 'N/A'
 );
 
 CREATE TABLE [outcomesCrimes] (
