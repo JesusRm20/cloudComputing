@@ -1,0 +1,2 @@
+Categories: https://data.police.uk/api/crime-categories
+Crime Outcome: https://data.police.uk/api/outcomes-for-crime/d86d99785f148543a525ab9657eb4bc554386e137e7650d383c7aef62b0be5ce

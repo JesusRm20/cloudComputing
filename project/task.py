@@ -1,6 +1,6 @@
 import json
 import requests
-#from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, Column, String, Date, Integer, Sequence
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -10,31 +10,60 @@ session = sessionmaker(bind=engine)()
 
 Base = declarative_base()
 
-class users(Base):
-    __tablename__ = "users"
-    id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
-    username = Column(String)
-    password = Column(String)
+# class users(Base):
+#     __tablename__ = "users"
+#     id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
+#     username = Column(String)
+#     password = Column(String)
+
+#     def __repr__(self):
+#         return "<User(username='%s', password='%s')>" % (
+#                                 self.username, self.password)
+
+class streetLevelCrimes(Base):
+    __tablename__ = "streetLevelCrimes"
+    id = Column(Integer, primary_key=True)
+    category = Column(String)
+    location_type = Column(String)
+    latitude = Column(String)
+    longitude = Column(String)
+    street_id = Column(String)
+    street_name = Column(String)
+    context = Column(String)
+    outcome_status = Column(String)
+    persistent_id = Column(String)
+    location_subtype = Column(String)
+    month = Column(String)
 
     def __repr__(self):
         return "<User(username='%s', password='%s')>" % (
-                                self.username, self.password)
-
-user = users(username="Jesus", password="JR2019")
-session.add(user)
-session.commit()
+                                self.id, self.category, self.location_type, self.latitude, self.longitude, self.street_id, 
+                                self.street_name, self.context, self.outcome_status, self.persistent_id, self.location_subtype, self.month)
 
 
-
-# crime_url_template = 'https://data.police.uk/api/crimes-street/all-crime?lat={lat}&lng={lng}&date={data}'
+crime_url_template = 'https://data.police.uk/api/crimes-street/all-crime?lat={lat}&lng={lng}&date={data}'
 # crimeoutcome_url_template = 'https://data.police.uk/api/crimes-street/outcomes-for-crime?id={id}'
 # categories_url_template = 'https://data.police.uk/api/crime-categories?date={date}'
 
-# my_latitude = '51.52369'
-# my_longitude = '-0.0395857'
-# my_date = '2018-11'
-# crime_url = crime_url_template.format(lat = my_latitude, lng = my_longitude, data = my_date)
-# resp = requests.get(crime_url)
+my_latitude = '51.52369'
+my_longitude = '-0.0395857'
+my_date = '2018-11'
+crime_url = crime_url_template.format(lat = my_latitude, lng = my_longitude, data = my_date)
+resp = requests.get(crime_url)
 
-# for r in resp:
-#     print(r[1], r[2])
+if resp.ok:
+    result = resp.json()
+
+for res in result:
+    crimes = streetLevelCrimes(id=res['id'], category=res['category'], location_type=res['location_type'], latitude=res['location']['latitude'], longitude=res['location']['longitude'], street_id=res['location']['street']['id'], 
+            street_name=res['location']['street']['name'], context=res['context'], outcome_status=res['outcome_status'], persistent_id=res['persistent_id'], location_subtype=res['location_subtype'], month=res['month'])
+    session.add(crimes)
+
+session.commit()
+# for r in result:
+#     if r['persistent_id'] != '':
+#         print(r['outcome_status']['category'])
+#         print(r['month'])
+#         print(r['category'])
+#         print(r['id'])
+#         print(r['location_type'])
