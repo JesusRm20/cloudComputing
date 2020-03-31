@@ -36,7 +36,7 @@ class streetLevelCrimes(Base):
     month = Column(String)
 
     def __repr__(self):
-        return "<User(username='%s', password='%s')>" % (
+        return "<streetLevelCrimes(id='%i',category='%s',location_type='%s',latitude='%s',longitude='%s',street_id='%s',street_name='%s',context='%s',outcome_status='%s',persistent_id='%s',location_subtype='%s',month='%s')>" % (
                                 self.id, self.category, self.location_type, self.latitude, self.longitude, self.street_id, 
                                 self.street_name, self.context, self.outcome_status, self.persistent_id, self.location_subtype, self.month)
 
