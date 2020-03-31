@@ -1,45 +1,81 @@
-$(document).ready(function(){
+// $(document).ready(function(){
 
-    $('#link').click(function(){
-        alert('Hello World!');
-      });
+//     $('#link').click(function(){
+//         alert('Hello World!');
+//       });
+//     $.ajax({
+//         url: 'http://ec2-54-162-20-24.compute-1.amazonaws.com:5000/records',
+//         type: 'GET',
+//         dataType: 'JSON',
+//         success: function (data) {
+//             console.log("success");
+//         },
+//         error: function(error) {
+//             console.log(error);
+//         }
+//     });
   
-  });
+//   });
   // Initialize the Amazon Cognito credentials provider
 // CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
 //     getApplicationContext(),
 //     "us-east-1:7ac11cb9-d270-4c2e-b059-d87c505d2156", // Identity pool ID
 //     Regions.US_EAST_1 // Region
 // );
-AWS.config.credentials = { "accessKeyId": "ASIAU6AOXXNBQRRPFP6N",
-                           "secretAccessKey": "xDdMNZ9tEbkaXaaWjnB3FW20gpO/OJzIXtZG99tS"};
-AWS.config.region = "us-east-1";
+// AWS.config.credentials = { "accessKeyId": "ASIAU6AOXXNBQREMP3AI",
+//                            "secretAccessKey": "unJuGI4KNJITH7hfX8Tb4ebR7og52GSeKTejT5Ow"};
+// AWS.config.region = "us-east-1";
+// [
+// 'version' => '2016-11-15',
+// 'credentials' => Array(
+//   'key' = 'ASIAU6AOXXNBQREMP3AI',
+//   'secrete' => 'unJuGI4KNJITH7hfX8Tb4ebR7og52GSeKTejT5Ow'
+// ),
+// 'region' => 'us-east-1',
+// 'http' => [
+//   'verify' => false 
+// ]
+// ]
 
+// AWS.config.getCredentials(function(err) {  
+//       if (err) {
+//         console.log(err.stack);  
+//         // credentials not loaded 
+//       }
+//      else {    
+//          console.log("Access key:", AWS.config.credentials.accessKeyId);    
+//          console.log("Secret access key:", AWS.config.credentials.secretAccessKey); 
+//         } 
+// });
 
-AWS.config.getCredentials(function(err) {  
-      if (err) {
-        console.log(err.stack);  
-        // credentials not loaded 
-      }
-     else {    
-         console.log("Access key:", AWS.config.credentials.accessKeyId);    
-         console.log("Secret access key:", AWS.config.credentials.secretAccessKey); 
-        } 
+var s3 = new AWS.s3({
+  'version' : 'latest',
+  'credentials' : {
+    'key' : 'ASIAU6AOXXNB7HS3IWOP',
+    'secrete' : 'VG4fNCVRc3eQBk0cBI2NA+3RAcVv+6GYBW1X0eKb'
+  },
+  'params': {'Bucket': 'myfirstbucketchuyrm'},
+  'region' : 'us-east-1',
+  'http' : {
+    'verify' : false 
+  }
 });
 
-var ec2 = new AWS.EC2({region: 'us-east-1', maxRetries: 15, apiVersion: '2016-11-15'})
 
-var request = ec2.describeInstances(function(err) {  
+s3.listObjects({Delimiter: '/'}, function(err, data) {
     if (err) {
-      console.log(err.stack);  
-      // credentials not loaded 
+      return alert('There was an error listing your albums: ' + err.message);
+    } else {
+      var message = data.length;
+      console.log(message);
     }
-});
+      
+  });
 
-// register callbacks on request to retrieve response data
-request.on('success', function(response) {
-  console.log(response.data);
-});
+// // register callbacks on request to retrieve response data
+// request.on('success', function(response) {
+//   console.log(response.data);
+// });
 // ec2.us-east-1.amazonaws.com
 
 // const Http = new XMLHttpRequest();
