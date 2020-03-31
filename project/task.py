@@ -1,7 +1,7 @@
 import json
 import requests
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, Column, String, Date
+#from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import create_engine, Column, String, Date, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -9,17 +9,17 @@ engine = create_engine("sqlite:///cloudCompProject.db")
 session = sessionmaker(bind=engine)()
 Base = declarative_base()
 
-class User(Base):
-    __tablename__ = "user"
+class users(Base):
+    __tablename__ = "users"
     _id = Column(Integer, primary_key = True)
     username = Column(String(100))
     password = Column(String(100))
 
-    def __ini__(self, username, password):
-        self.username = username
-        self.password = password
-
-user = User("Jesus", "JR2019")
+    def __ini__(self, _id, username, password):
+        self._id = _id
+	self.username = username
+	self.password = password
+user = users(1, "Jesus", "JR2019")
 session.add(user)
 session.commit()
 
