@@ -78,6 +78,6 @@ crime_url_template = 'https://data.police.uk/api/crimes-street/all-crime?lat={la
 #     print(r['persistent_id'])
     # x = None if r['outcome_status']['category'] == '' else r['outcome_status']['category']
 
-our_user = session.query(streetLevelCrimes).filter_by(name='ed').first() 
+our_user = session.query(streetLevelCrimes).filter_by(category='anti-social-behaviour').first() 
 
 print(our_user)
