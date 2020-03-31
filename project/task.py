@@ -1,7 +1,7 @@
 import json
 import requests
 #from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, Column, String, Date, Integer
+from sqlalchemy import create_engine, Column, String, Date, Integer, Sequence
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
@@ -12,7 +12,8 @@ Base = declarative_base()
 
 class users(Base):
     __tablename__ = "users"
-    username = Column(String, primary_key=True)
+    id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
+    username = Column(String)
     password = Column(String)
 
     def __repr__(self):
