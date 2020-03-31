@@ -15,11 +15,11 @@ class users(Base):
     username = Column(String, primary_key=True)
     password = Column(String)
 
-    def __ini__(self, username, password):
-        self.username = username
-        self.password = password
+    def __repr__(self):
+        return "<User(username='%s', password='%s')>" % (
+                                self.username, self.password)
 
-user = users("Jesus", "JR2019")
+user = users(username="Jesus", password="JR2019")
 session.add(user)
 session.commit()
 
