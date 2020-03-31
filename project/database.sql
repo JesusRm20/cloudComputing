@@ -24,9 +24,8 @@ CREATE TABLE [outcomesCrimes] (
 	[Id] INTEGER  NOT NULL PRIMARY KEY,
 	[persistent_id] NVARCHAR(100)  NOT NULL,
 	[category_id] INTEGER  NOT NULL,
-	[date] NVARCHAR(100)  NOT NULL,
+	[date_1] NVARCHAR(100)  NOT NULL,
 	[person_id] NVARCHAR(100)  NOT NULL,
-	[month] NVARCHAR(100) NOT NULL
 );
 
 CREATE TABLE [crimeCategories] (
