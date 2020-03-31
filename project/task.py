@@ -54,16 +54,24 @@ resp = requests.get(crime_url)
 if resp.ok:
     result = resp.json()
 
-for res in result:
-    crimes = streetLevelCrimes(id=res['id'], category=res['category'], location_type=res['location_type'], latitude=res['location']['latitude'], longitude=res['location']['longitude'], street_id=res['location']['street']['id'], 
-            street_name=res['location']['street']['name'], context=res['context'], outcome_status=res['outcome_status'], persistent_id=res['persistent_id'], location_subtype=res['location_subtype'], month=res['month'])
+for r in result:
+    crimes = streetLevelCrimes(id=None if r['id'] == '' else r['id'], 
+                               category=None if r['category'] == '' else r['category'], 
+                               location_type=None if r['location_type'] == '' else r['location_type'], 
+                               latitude=None if r['location']['latitude'] == '' else r['location']['latitude'], 
+                               longitude=None if r['location']['longitude'] == '' else r['location']['longitude'], 
+                               street_id=None if r['location']['street']['id'] == '' else r['location']['street']['id'],
+                               street_name=None if r['location']['street']['id'] == '' else r['location']['street']['id'], 
+                               context=None if r['context'] == '' else r['context'], 
+                               outcome_status=None if r['outcome_status'] == '' else r['outcome_status'], 
+                               persistent_id=None if r['persistent_id'] == '' else r['persistent_id'], 
+                               location_subtype=None if r['location_subtype'] == '' else r['location_subtype'], 
+                               month=None if r['month'] == '' else r['month'])
     session.add(crimes)
 
 session.commit()
+
 # for r in result:
-#     if r['persistent_id'] != '':
-#         print(r['outcome_status']['category'])
-#         print(r['month'])
-#         print(r['category'])
-#         print(r['id'])
-#         print(r['location_type'])
+#     x = ''
+#     x = None if r['location']['street']['id'] == '' else r['location']['street']['id']
+#     print(x)
