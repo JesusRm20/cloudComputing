@@ -7,20 +7,19 @@ from sqlalchemy.orm import sessionmaker
 
 engine = create_engine("sqlite:///cloudCompProject.db")
 session = sessionmaker(bind=engine)()
+
 Base = declarative_base()
 
 class users(Base):
     __tablename__ = "users"
-    _id = Column(Integer, primary_key = True)
-    username = Column(String(100))
-    password = Column(String(100))
+    username = Column(String, primary_key=True)
+    password = Column(String)
 
-    def __ini__(self, id, username, password):
-        self._id = id
+    def __ini__(self, username, password):
         self.username = username
         self.password = password
-        
-user = users(1, "Jesus", "JR2019")
+
+user = users("Jesus", "JR2019")
 session.add(user)
 session.commit()
 
