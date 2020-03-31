@@ -80,5 +80,4 @@ crime_url_template = 'https://data.police.uk/api/crimes-street/all-crime?lat={la
 
 our_user = session.query(streetLevelCrimes).filter_by(category='anti-social-behaviour').first() 
 
-for i in our_user:
-    print(i)
+print(our_user['category'])
