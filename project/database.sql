@@ -1,0 +1,5 @@
+CREATE TABLE [users] (
+	[Id] INTEGER  NOT NULL PRIMARY KEY,
+	[Username] NVARCHAR(100)  NOT NULL,
+	[Password] NVARCHAR(100) NOT NULL
+);
