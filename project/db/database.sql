@@ -1,13 +1,6 @@
-CREATE TABLE [users] (
-	[Id] INTEGER PRIMARY KEY NOT NULL,
-	[Username] NVARCHAR(100),
-	[Password] NVARCHAR(100),
-	[Date] NVARCHAR(100)
-);
-
 CREATE TABLE [streetLevelCrimes] (
 	[id] INTEGER  NOT NULL PRIMARY KEY,
-	[category] NVARCHAR(100),
+	[category_id] NVARCHAR(100),
 	[location_type] NVARCHAR(100),
 	[latitude] NVARCHAR(100),
 	[longitude] NVARCHAR(100) ,
@@ -23,7 +16,7 @@ CREATE TABLE [streetLevelCrimes] (
 CREATE TABLE [outcomesCrimes] (
 	[id] INTEGER  NOT NULL PRIMARY KEY,
 	[persistent_id] NVARCHAR(100),
-	[category_id] INTEGER,
+	[category] INTEGER,
 	[date_1] NVARCHAR(100),
 	[person_id] NVARCHAR(100)
 );

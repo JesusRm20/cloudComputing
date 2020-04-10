@@ -1,51 +1,12 @@
 import json
 import requests
-# from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, Column, String, Date, Integer, Sequence
-from sqlalchemy.ext.declarative import declarative_base
+from passwordHash import hashPassword
+import crimeClasses
+from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine("sqlite:///cloudCompProject.db")
+engine = create_engine("sqlite:///db/cloudCompProject.db", connect_args={'check_same_thread': False})
 session = sessionmaker(bind=engine)()
-
-Base = declarative_base()
-
-class users(Base):
-    __tablename__ = "users"
-    id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
-    username = Column(String)
-    password = Column(String)
-
-    def __repr__(self):
-        return "<User(username='%s', password='%s')>" % (
-                                self.username, self.password)
-
-class streetLevelCrimes(Base):
-    __tablename__ = "streetLevelCrimes"
-    id = Column(Integer, primary_key=True)
-    category = Column(String)
-    location_type = Column(String)
-    latitude = Column(String)
-    longitude = Column(String)
-    street_id = Column(String)
-    street_name = Column(String)
-    context = Column(String)
-    outcome_status = Column(String)
-    persistent_id = Column(String)
-    location_subtype = Column(String)
-    month = Column(String)
-
-    def __repr__(self):
-        return "<streetLevelCrimes(id='%i',category='%s',location_type='%s',latitude='%s',longitude='%s',street_id='%s',street_name='%s',context='%s',outcome_status='%s',persistent_id='%s',location_subtype='%s',month='%s')>" % (
-                                self.id, self.category, self.location_type, self.latitude, self.longitude, self.street_id, 
-                                self.street_name, self.context, self.outcome_status, self.persistent_id, self.location_subtype, self.month)
-class crimeCategories(Base):
-    __tablename__ = "crimeCategories"
-    id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
-    name = Column(String)
-
-    def __repr__(self):
-        return "<User(name='%s')>" % (self.name)
 
 def loadStreestLevelCrimes():
     crime_url_template = 'https://data.police.uk/api/crimes-street/all-crime?lat={lat}&lng={lng}&date={data}'
@@ -60,13 +21,13 @@ def loadStreestLevelCrimes():
         result = resp.json()
 
     for r in result:
-        crimes = streetLevelCrimes(id=None if r['id'] == '' else r['id'], 
-                                   category=None if r['category'] == '' else r['category'], 
+        crimes = crimeClasses.streetLevelCrimes(id=None if r['id'] == '' else r['id'], 
+                                   category_id=None if r['category'] == '' else r['category'], 
                                    location_type=None if r['location_type'] == '' else r['location_type'], 
                                    latitude=None if r['location']['latitude'] == '' else r['location']['latitude'], 
                                    longitude=None if r['location']['longitude'] == '' else r['location']['longitude'], 
                                    street_id=None if r['location']['street']['id'] == '' else r['location']['street']['id'],
-                                   street_name=None if r['location']['street']['id'] == '' else r['location']['street']['id'], 
+                                   street_name=None if r['location']['street']['name'] == '' else r['location']['street']['name'], 
                                    context=None if r['context'] == '' else r['context'], 
                                    outcome_status=None, 
                                    persistent_id=None if r['persistent_id'] == '' else r['persistent_id'], 
@@ -76,12 +37,6 @@ def loadStreestLevelCrimes():
 
     session.commit()
 
-    # for r in result:
-
-    #     x = None if r['outcome_status'] == '' else r['outcome_status'],
-    #     print(x)
-    #     print(r['persistent_id'])
-        # x = None if r['outcome_status']['category'] == '' else r['outcome_status']['category']
 def loadCrimesCategories():
     categories_url_template = 'https://data.police.uk/api/crime-categories'
     resp = requests.get(categories_url_template)
@@ -90,14 +45,42 @@ def loadCrimesCategories():
         result = resp.json()
     
     for cat in result:
-        category = crimeCategories(name=cat['name'])
+        category = crimeClasses.crimeCategories(name=cat['url'].lower())
         session.add(category)
     session.commit()
 
 def loadCrimesOutcome():
-     crimeoutcome_url_template = 'https://data.police.uk/api/crimes-street/outcomes-for-crime?id={id}'
+    our_user = session.query(crimeClasses.streetLevelCrimes.persistent_id).distinct('persistent_id') 
+    for u in our_user:
+        crimeoutcome_url_template = 'https://data.police.uk/api/outcomes-for-crime/{id}'
+        crimeid = u[0]
+        crime_url = crimeoutcome_url_template.format(id = crimeid)
 
-# loadCrimesCategories()
-loadCrimesCategories()
-# our_user = session.query(streetLevelCrimes).filter_by(category='anti-social-behaviour').first() 
-# print(our_user.category)
+        resp = requests.get(crime_url)      
+
+        if resp.ok:
+            result = resp.json()
+        for res in result['outcomes']:
+            outcome = crimeClasses.outcomesCrimes(persistent_id=result['crime']['persistent_id'],category=res['category']['name'],date_1=res['date'],person_id=res['person_id'])
+            session.add(outcome)
+        session.commit()
+
+def getStreestLevelCrimes():
+    result = session.query(crimeClasses.streetLevelCrimes).order_by(crimeClasses.streetLevelCrimes.month).limit(100)
+    return result
+
+def getCrimesCategories():
+    result = session.query(crimeClasses.crimeCategories).all()
+
+def getCrimesOutcome(id):
+    result = session.query(crimeClasses.outcomesCrimes).filter_by(persistent_id=id).all()
+    return result
+
+# for i in getCrimesOutcome('de8d2d293c09aa6a6bf98da17a2e0f59cbb488aea60c3e475321bdce2908c09b'):
+#     print(i.category)
+# category_id = session.query(crimeClasses.crimeCategories.id).filter_by(name='bicycle-theft'.lower()).first()
+# print(category_id.id)
+# loadStreestLevelCrimes()
+# resp = getStreestLevelCrimes()
+# for i in resp:
+#     print()

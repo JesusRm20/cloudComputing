@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up Page{% endblock %}
+{% block content %}
+<h1 class="title">List of the top 100 crimes</h1>
+    <div class="row justify-content-center">
+        <table class="table table-striped col-md-10">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Latitud</th>
+                    <th scope="col">Longitude</th>
+                    <th scope="col">Street Name</th>
+                    <th scope="col">Outcome</th>
+                    <th scope="col">Month</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in obj %}
+                    <tr>
+                        <th scope="row">{{i.id}}</th>
+                        <td>{{i.category_id}}</td>
+                        <td>{{i.latitude}}</td>
+                        <td>{{i.longitude}}</td>
+                        <td>{{i.street_name}}</td>
+                        <td>{{i.outcome_status}}</td>
+                        <td>{{i.month}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
