@@ -24,8 +24,8 @@ class users(Base):
     date = Column(String)
 
     def __repr__(self):
-        return "<user(name='%s', lastname='%s', email='%s', username='%s', password='%s', date='%s')>" % (
-                                self.name, self.lastname, self.email, self.username, self.password, self.date)
+        return "<users(name='%s', lastname='%s', email='%s', username='%s', password='%s', date='%s')>" % (
+                               self.name, self.lastname, self.email, self.username, self.password, self.date)
 
 
 def addUser(obj):
@@ -41,3 +41,9 @@ def verUser(usr):
     result = session.query(users.password).filter_by(username=usr).first()
     
     return '' if result == None else result.password
+
+def updateUsr(id1, obj):
+    usr = session.query(users).filter_by(id=id1).first()
+    usr.username = obj
+    session.commit()
+    return True

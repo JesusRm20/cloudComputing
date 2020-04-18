@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Load Crimes{% endblock %}
+{% block content %}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{msg}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center">
+            <h1>Welcome to Public Street Level Crimes</h1>
+        </div>
+        <div class="col-md-12 text-center">
+            <p>Here you will be able to load crimes for a specific month.</p>     
+        </div>
+    </div>
+    <main class="login-form">
+        <div class="cotainer">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Please enter a date in a year-month(XXXX-XX) format:</div>
+                        <div class="card-body">
+                            <form action="#" method="post">
+                                <div class="form-group row">
+                                    <label for="date" class="col-md-4 col-form-label text-md-right">Date</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="date" class="form-control" name="date" required autofocus>
+                                    </div>
+                                </div>
+    
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        Load
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>    
+{% endblock %}

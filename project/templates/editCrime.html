@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %}Edit Crime{% endblock %}
+{% block content %}
+	<div class="container-fluid">
+			<div class="row" class="custom-centered">
+				<div class="col align-self-center">
+                    <center>
+                        <form role="form" method="post" action="#" class="col-md-8" id="editCrime">
+                            <input type="hidden" name="_method" value="put" />
+                            <fieldset>								
+                                <h3 class="text-uppercase pull-center">CRIME DETAILS</h3>	
+                                {% for i in crime['details'] %}
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="id">ID</label>
+                                            <input type="text" name="id" id="id" class="form-control input-lg text-center" value='{{i.id}}' disabled>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="category">Category</label>
+                                            <input type="text" name="category" id="category" class="form-control input-lg text-center edit" value='{{i.category_id}}' disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-12">
+                                            <label for="persistent_id">Persistent ID</label>
+                                            <input type="text" name="persistent_id" id="persistent_id" class="form-control input-lg text-center" value='{{i.persistent_id}}' disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label for="location_type">Location Type</label>
+                                            <input type="text" name="location_type" id="location_type" class="form-control input-lg text-center edit" value='{{i.location_type}}' disabled>
+                                        </div>
+                                        <div class="form-group col-md-8">
+                                            <label for="street_name">Street</label>
+                                            <input type="text" name="street_name" id="street_name" class="form-control input-lg text-center edit" value='{{i.street_name}}' disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-4">
+                                            <label for="longitud">Longitud</label>
+                                            <input type="text" name="longitude" id="longitude" class="form-control input-lg text-center edit" value='{{i.longitude}}' disabled>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="latitude">Latitud</label>
+                                            <input type="text" name="latitude" id="latitude" class="form-control input-lg text-center edit" value='{{i.latitude}}' disabled>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="month">Month</label>
+                                            <input type="text" name="month" id="month" class="form-control input-lg text-center edit" value='{{i.month}}' disabled>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <div class="row">
+                                    <h4 class="text-uppercase col-md-10" style="text-align: left;"> OUTCOMES</h4>
+                                    <div>
+                                        <input type="button" class="btn col-md-11" id="cancel" value="CANCEL">
+                                    </div>
+                                    <div>
+                                        <input type="submit" class="btn btn-md btn-primary col-md-12" id="save" value="SAVE">
+                                    </div> 
+                                    <input type="button" class="btn btn-md btn-primary col-md-1" id="editOutcomes" value="EDIT">
+                                </div>
+                                <br>
+                        </form>
+                                <div class="row">
+                                    <table class="table table-striped col-md-12">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Month</th>
+                                                <th scope="col">Person ID</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in crime['outcomes'] %}
+                                                <tr>
+                                                    <form role="form" method="post" action="#">
+                                                        <input type="hidden" name="_method" id="_method" value="delete" />
+                                                        <input type="hidden" name="value" id="_method" value="{{i.id}}" />
+                                                        <th scope="row">{{i.id}}</th>
+                                                        <td>{{i.category}}</td>
+                                                        <td>{{i.date_1}}</td>
+                                                        <td>{{i.person_id}}</td>
+                                                        <td><input type="submit" id="{{ i.id }}" class="btn btn-md btn-secondary edit editButton" value="DELETE" disabled></td>
+                                                    </form>    
+                                                    </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </fieldset>
+                    </center>
+				</div>
+				
+			</div>
+		</div>
+		<p class="text-center">
+			<small id="passwordHelpInline" class="text-muted"> Developer:<a href="http://www.psau.edu.ph/"> Pampanga state agricultural university ?</a> BS. Information and technology students @2017 Credits: <a href="https://v4-alpha.getbootstrap.com/">boostrap v4.</a></small>
+		</p>
+    </div>
+{% endblock %}

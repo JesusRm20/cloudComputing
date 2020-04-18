@@ -36,6 +36,14 @@ class crimeCategories(Base):
     def __repr__(self):
         return "<User(name='%s')>" % (self.name)
 
+class outcomesCount(Base):
+    __tablename__ = "outcomesCount"
+    id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
+    persistent_id = Column(String)
+
+    def __repr__(self):
+        return "<User(persistent_id='%s')>" % (self.persistent_id)
+
 class outcomesCrimes(Base):
     __tablename__ = "outcomesCrimes"
     id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
@@ -45,4 +53,4 @@ class outcomesCrimes(Base):
     person_id = Column(String)
 
     def __repr__(self):
-        return "<User(name='%s')>" % (self.name)
+        return "<User(persistent_id='%s',category='%s',date_1='%s',person_id='%s')>" % (self.persistent_id,self.category,self.date_1,self.person_id)

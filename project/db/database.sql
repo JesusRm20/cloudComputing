@@ -25,3 +25,8 @@ CREATE TABLE [crimeCategories] (
 	[id] INTEGER  NOT NULL PRIMARY KEY,
 	[name] NVARCHAR(100)  NOT NULL
 );
+
+CREATE TABLE [outcomesCount] (
+	[id] INTEGER  NOT NULL PRIMARY KEY,
+	[persistent_id] NVARCHAR(100)  NOT NULL
+);

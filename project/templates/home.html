@@ -1,33 +1,74 @@
 {% extends 'base.html' %}
-{% block title %}Sign Up Page{% endblock %}
+{% block title %}List of Crimes{% endblock %}
 {% block content %}
-<h1 class="title">List of the top 100 crimes</h1>
-    <div class="row justify-content-center">
-        <table class="table table-striped col-md-10">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Latitud</th>
-                    <th scope="col">Longitude</th>
-                    <th scope="col">Street Name</th>
-                    <th scope="col">Outcome</th>
-                    <th scope="col">Month</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for i in obj %}
-                    <tr>
-                        <th scope="row">{{i.id}}</th>
-                        <td>{{i.category_id}}</td>
-                        <td>{{i.latitude}}</td>
-                        <td>{{i.longitude}}</td>
-                        <td>{{i.street_name}}</td>
-                        <td>{{i.outcome_status}}</td>
-                        <td>{{i.month}}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>List of Street Crimes</h1>
+            <p> Here you can search for crimes that happened in a specific date.</p>
+        </div>
     </div>
-{% endblock %}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="search-box">
+                <form action="#" method="post">
+                    <div class="row">
+                        <input type="text" name="searchDate" id="searchDate" class="form-control col-md-9" placeholder="XXXX-XX" data-toggle="dropdown">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <ul>
+                            {% for i in obj['dates'] %}
+                                <li class="dropdown-item opt" value="{{ i.month }}">{{ i.month }}</li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                        <input type="submit" class="btn btn-primary search-btn col-md-3" id="searchBtn" value="Search">
+                    </div>
+                </form>
+            </div>
+        </div>     
+    </div>
+</div>
+  <div class="row">
+      <br>
+  </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <nav aria-label="...">
+            <ul class="pagination">
+                
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <table class="table table-striped col-md-10" id="listCrimes">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Category</th>
+                <th scope="col">Latitud</th>
+                <th scope="col">Longitude</th>
+                <th scope="col">Street Name</th>
+                <th scope="col">Outcome</th>
+                <th scope="col">Month</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in obj['outcomes'] %}
+                <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.category_id}}</td>
+                    <td>{{i.latitude}}</td>
+                    <td>{{i.longitude}}</td>
+                    <td>{{i.street_name}}</td>
+                    <td>{{i.outcome_status}}</td>
+                    <td>{{i.month}}</td>
+                    <td><a id="{{ i.id }}" class="btn btn-md btn-primary" href="{{ url_for('editCrime',id=i.id) }}">DETAILS</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 
