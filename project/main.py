@@ -129,12 +129,11 @@ def editCrime(id):
             crimeDetails = task.getStreestLevelCrimesId(id)
             persistent_id = crimeDetails[0].persistent_id
             count = task.countCrimesOutcome(persistent_id)
-            return persistent_id
-            # if count > 0:
-            #     crimeOutcomes = task.getCrimesOutcome(persistent_id)
-            # else:
-            #     task.loadCrimesOutcome(persistent_id)
-            #     crimeOutcomes = task.getCrimesOutcome(persistent_id)
+            if count > 0:
+                crimeOutcomes = task.getCrimesOutcome(persistent_id.strip())
+            else:
+                task.loadCrimesOutcome(persistent_id.strip())
+                crimeOutcomes = task.getCrimesOutcome(persistent_id.strip())
         else:
             return  redirect(url_for('login'))
     
