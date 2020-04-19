@@ -104,7 +104,7 @@ def editCrime(id):
             crime['longitude'] = request.form['longitude']
             crime['street_name'] = request.form['street_name']
             crime['month'] = request.form['month']
-            response = requests.put('http://localhost:5000/put', data=crime)
+            response = requests.put('http://localhost/put', data=crime)
             if response.content:
                 crimeDetails = task.getStreestLevelCrimesId(id)
                 persistent_id = crimeDetails[0].persistent_id
@@ -112,7 +112,7 @@ def editCrime(id):
         else:
             if 'usr' in session:
                 outcomeId = request.form['value']
-                response = requests.delete('http://localhost:5000/delete', data={'id':outcomeId})
+                response = requests.delete('http://localhost/delete', data={'id':outcomeId})
                 crimeDetails = task.getStreestLevelCrimesId(int(response.content))
                 persistent_id = crimeDetails[0].persistent_id
                 count = task.countCrimesOutcome(persistent_id)

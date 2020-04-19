@@ -69,8 +69,6 @@ def loadCrimesOutcome(id):
             outcome = crimeClasses.outcomesCrimes(persistent_id=result['crime']['persistent_id'],category=res['category']['name'],date_1=res['date'],person_id=res['person_id'])
             session.add(outcome)
         session.commit()
-    else:
-        return 'error'
 
 def getStreestLevelCrimes(date=None):
     if date:
