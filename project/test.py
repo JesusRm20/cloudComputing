@@ -12,7 +12,8 @@ def passwordCheck(pwd, hashedpwd):
         return True
     else:
         return False
-passdb = '\x243262243132246a4e574f7a5a723944784d69625469514c4752755a65336c5339732e763979336e6f6b7a714e6771534448364b4e57776b676b664b'
+passdb = '$2b$12$BVFGyDI9molqBOXEgHB9G.mR2v3QPjHcQHSheedyh0qYvsSeIkP6u'
+pass2 = "$2b$12$BVFGyDI9molqBOXEgHB9G.mR2v3QPjHcQHSheedyh0qYvsSeIkP6u                                                                                                                                            ".strip()
 pass1 = 'jesus'
 
-print(passwordCheck(pass1, passdb))
+print(passwordCheck(pass1, pass2))

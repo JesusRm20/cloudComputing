@@ -45,15 +45,14 @@ def login(name=None):
         password = request.form['password']
         resp = userClasses.verUser(usr)
         if resp != '':
-            return resp.encode('utf-8')
-            # ver = passwordHash.passwordCheck(password, resp) 
-            # if ver:
-            #     session['usr'] = usr
-            #     flash('You have been logged in successfully' , 'info')
-            #     return  redirect(url_for('home'))
-            # else:
-            #     flash('User name or password incorrect' , 'error')
-            #     return render_template('login.html')  
+            ver = passwordHash.passwordCheck(password, resp.strip()) 
+            if ver:
+                session['usr'] = usr
+                flash('You have been logged in successfully' , 'info')
+                return  redirect(url_for('home'))
+            else:
+                flash('User name or password incorrect' , 'error')
+                return render_template('login.html')  
         else:
             flash('User name or password incorrect' , 'error')
             return render_template('login.html')        
