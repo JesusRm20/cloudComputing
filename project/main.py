@@ -44,6 +44,7 @@ def login(name=None):
         usr = request.form['userName']
         password = request.form['password']
         resp = userClasses.verUser(usr)
+        resp = unicode(resp, "utf-8")
         if resp != '':
             ver = passwordHash.passwordCheck(password, resp) 
             if ver:
