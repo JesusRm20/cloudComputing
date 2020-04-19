@@ -13,7 +13,7 @@ def loadStreetLevelCrimes(date):
 
     my_latitude = '51.52369'
     my_longitude = '-0.0395857'
-    crime_url = crime_url_template.format(lat = my_latitude, lng = my_longitude, data = date)
+    crime_url = crime_url_template.format(lat = my_latitude, lng = my_longitude, data = date.strip())
     resp = requests.get(crime_url)
 
     if resp.ok:

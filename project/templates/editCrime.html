@@ -13,41 +13,41 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="id">ID</label>
-                                            <input type="text" name="id" id="id" class="form-control input-lg text-center" value='{{i.id}}' disabled>
+                                            <input type="text" name="id" id="id" class="form-control input-lg text-center" value='{{i.id.strip()}}' disabled>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="category">Category</label>
-                                            <input type="text" name="category" id="category" class="form-control input-lg text-center edit" value='{{i.category_id}}' disabled>
+                                            <input type="text" name="category" id="category" class="form-control input-lg text-center edit" value='{{i.category_id.strip()}}' disabled>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="persistent_id">Persistent ID</label>
-                                            <input type="text" name="persistent_id" id="persistent_id" class="form-control input-lg text-center" value='{{i.persistent_id}}' disabled>
+                                            <input type="text" name="persistent_id" id="persistent_id" class="form-control input-lg text-center" value='{{i.persistent_id.strip()}}' disabled>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="location_type">Location Type</label>
-                                            <input type="text" name="location_type" id="location_type" class="form-control input-lg text-center edit" value='{{i.location_type}}' disabled>
+                                            <input type="text" name="location_type" id="location_type" class="form-control input-lg text-center edit" value='{{i.location_type.strip()}}' disabled>
                                         </div>
                                         <div class="form-group col-md-8">
                                             <label for="street_name">Street</label>
-                                            <input type="text" name="street_name" id="street_name" class="form-control input-lg text-center edit" value='{{i.street_name}}' disabled>
+                                            <input type="text" name="street_name" id="street_name" class="form-control input-lg text-center edit" value='{{i.street_name.strip()}}' disabled>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="longitud">Longitud</label>
-                                            <input type="text" name="longitude" id="longitude" class="form-control input-lg text-center edit" value='{{i.longitude}}' disabled>
+                                            <input type="text" name="longitude" id="longitude" class="form-control input-lg text-center edit" value='{{i.longitude.strip()}}' disabled>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="latitude">Latitud</label>
-                                            <input type="text" name="latitude" id="latitude" class="form-control input-lg text-center edit" value='{{i.latitude}}' disabled>
+                                            <input type="text" name="latitude" id="latitude" class="form-control input-lg text-center edit" value='{{i.latitude.strip()}}' disabled>
                                         </div>
                                         <div class="form-group col-md-4">
                                             <label for="month">Month</label>
-                                            <input type="text" name="month" id="month" class="form-control input-lg text-center edit" value='{{i.month}}' disabled>
+                                            <input type="text" name="month" id="month" class="form-control input-lg text-center edit" value='{{i.month.strip()}}' disabled>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -79,12 +79,12 @@
                                                 <tr>
                                                     <form role="form" method="post" action="#">
                                                         <input type="hidden" name="_method" id="_method" value="delete" />
-                                                        <input type="hidden" name="value" id="_method" value="{{i.id}}" />
-                                                        <th scope="row">{{i.id}}</th>
-                                                        <td>{{i.category}}</td>
-                                                        <td>{{i.date_1}}</td>
-                                                        <td>{{i.person_id}}</td>
-                                                        <td><input type="submit" id="{{ i.id }}" class="btn btn-md btn-secondary edit editButton" value="DELETE" disabled></td>
+                                                        <input type="hidden" name="value" id="_method" value="{{i.id.strip()}}" />
+                                                        <th scope="row">{{i.id.strip()}}</th>
+                                                        <td>{{i.category.strip()}}</td>
+                                                        <td>{{i.date_1.strip()}}</td>
+                                                        <td>{{i.person_id.strip()}}</td>
+                                                        <td><input type="submit" id="{{ i.id.strip() }}" class="btn btn-md btn-secondary edit editButton" value="DELETE" disabled></td>
                                                     </form>    
                                                     </tr>
                                             {% endfor %}
