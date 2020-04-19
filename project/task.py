@@ -5,7 +5,7 @@ import crimeClasses
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-engine = create_engine("postgresql://postgres:password@localhost/cloudComputing")
+engine = create_engine("sqlite:///db/cloudCompProject.db")
 session = sessionmaker(bind=engine)()
 
 def loadStreetLevelCrimes(date):

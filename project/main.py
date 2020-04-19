@@ -14,7 +14,7 @@ def signup():
         resp = userClasses.addUser(usr)
         if resp:
             flash('The account has been created successfully' , 'info')
-            return redirect(url_for('login', name=usr['firstName']))
+            return redirect(url_for('login'))
     else:
         return render_template('signup.html')
 
