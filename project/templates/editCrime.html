@@ -13,7 +13,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="id">ID</label>
-                                            <input type="text" name="id" id="id" class="form-control input-lg text-center" value='{{i.id.strip()}}' disabled>
+                                            <input type="text" name="id" id="id" class="form-control input-lg text-center" value='{{i.id}}' disabled>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="category">Category</label>
@@ -79,12 +79,12 @@
                                                 <tr>
                                                     <form role="form" method="post" action="#">
                                                         <input type="hidden" name="_method" id="_method" value="delete" />
-                                                        <input type="hidden" name="value" id="_method" value="{{i.id.strip()}}" />
-                                                        <th scope="row">{{i.id.strip()}}</th>
+                                                        <input type="hidden" name="value" id="_method" value="{{i.id}}" />
+                                                        <th scope="row">{{i.id}}</th>
                                                         <td>{{i.category.strip()}}</td>
                                                         <td>{{i.date_1.strip()}}</td>
                                                         <td>{{i.person_id.strip()}}</td>
-                                                        <td><input type="submit" id="{{ i.id.strip() }}" class="btn btn-md btn-secondary edit editButton" value="DELETE" disabled></td>
+                                                        <td><input type="submit" id="{{ i.id }}" class="btn btn-md btn-secondary edit editButton" value="DELETE" disabled></td>
                                                     </form>    
                                                     </tr>
                                             {% endfor %}

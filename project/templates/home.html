@@ -58,14 +58,14 @@
         <tbody>
             {% for i in obj['outcomes'] %}
                 <tr>
-                    <th scope="row">{{i.id.strip()}}</th>
+                    <th scope="row">{{i.id}}</th>
                     <td>{{i.category_id.strip()}}</td>
                     <td>{{i.latitude.strip()}}</td>
                     <td>{{i.longitude.strip()}}</td>
                     <td>{{i.street_name.strip()}}</td>
                     <td>{{i.outcome_status.strip()}}</td>
                     <td>{{i.month.strip()}}</td>
-                    <td><a id="{{ i.id.strip() }}" class="btn btn-md btn-primary" href="{{ url_for('editCrime',id=i.id.strip()) }}">DETAILS</a></td>
+                    <td><a id="{{ i.id }}" class="btn btn-md btn-primary" href="{{ url_for('editCrime',id=i.id }}">DETAILS</a></td>
                 </tr>
             {% endfor %}
         </tbody>
