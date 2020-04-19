@@ -10,12 +10,12 @@ import passwordHash
 
 Base = declarative_base()
 
-engine = create_engine("sqlite:///db/usersDb.db", connect_args={'check_same_thread': False})
+engine = create_engine("postgresql://postgres:password@localhost/cloudComputing")
 session = sessionmaker(bind=engine)()
 
 class users(Base):
     __tablename__ = "users"
-    id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
+    id = Column(Integer, primary_key=True)
     name = Column(String)
     lastname = Column(String)
     email = Column(String)

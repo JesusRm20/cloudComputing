@@ -30,7 +30,7 @@ class streetLevelCrimes(Base):
 
 class crimeCategories(Base):
     __tablename__ = "crimeCategories"
-    id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
+    id = Column(Integer, primary_key=True)
     name = Column(String)
 
     def __repr__(self):
@@ -38,7 +38,7 @@ class crimeCategories(Base):
 
 class outcomesCount(Base):
     __tablename__ = "outcomesCount"
-    id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
+    id = Column(Integer, primary_key=True)
     persistent_id = Column(String)
 
     def __repr__(self):
@@ -46,7 +46,7 @@ class outcomesCount(Base):
 
 class outcomesCrimes(Base):
     __tablename__ = "outcomesCrimes"
-    id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
+    id = Column(Integer, primary_key=True)
     persistent_id = Column(String)
     category = Column(String)
     date_1 = Column(String)
