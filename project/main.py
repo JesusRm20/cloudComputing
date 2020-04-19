@@ -12,9 +12,10 @@ def signup():
     if request.method == 'POST':
         usr = request.form
         resp = userClasses.addUser(usr)
-        if resp:
-            flash('The account has been created successfully' , 'info')
-            return redirect(url_for('login'))
+        # if resp:
+        #     flash('The account has been created successfully' , 'info')
+        #     return redirect(url_for('login'))
+        return resp
     else:
         return render_template('signup.html')
 

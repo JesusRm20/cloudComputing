@@ -35,7 +35,7 @@ def addUser(obj):
     session.add(usr)
     session.commit()
 
-    return True
+    return pwd
 
 def verUser(usr):
     result = session.query(users.password).filter_by(username=usr).first()
