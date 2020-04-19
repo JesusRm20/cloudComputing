@@ -1,4 +1,3 @@
-import json
 import requests
 from passwordHash import hashPassword
 from sqlalchemy import create_engine, Column, String, Date, Integer, Sequence
@@ -9,7 +8,7 @@ import passwordHash
 
 Base = declarative_base()
 
-engine = create_engine("postgresql://postgres:password@localhost/cloudComputing")
+engine = create_engine("postgresql://postgres:password@localhost:5432/cloudComputing")
 session = sessionmaker(bind=engine)()
 
 class users(Base):
