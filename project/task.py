@@ -29,14 +29,14 @@ def loadStreetLevelCrimes(date):
                                    street_name=None if r['location']['street']['name'] == '' else r['location']['street']['name'], 
                                    context=None if r['context'] == '' else r['context'], 
                                    outcome_status=None, 
-                                   persistent_id='0' if r['persistent_id'] == '' else r['persistent_id'], 
+                                   persistent_id=0 if r['persistent_id'] == '' else r['persistent_id'], 
                                    location_subtype=None if r['location_subtype'] == '' else r['location_subtype'], 
                                    month=None if r['month'] == '' else r['month'])
         session.add(crimes)
 
     session.commit()
 
-    outcome = session.query(crimeClasses.streetLevelCrimes).filter_by(persistent_id=0).all()
+    outcome = session.query(crimeClasses.streetLevelCrimes).filter_by(persistent_id='0').all()
     for i in outcome:
         session.delete(i)
     session.commit()
