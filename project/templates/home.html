@@ -65,7 +65,7 @@
                     <td>{{i.street_name.strip()}}</td>
                     <td>{{i.outcome_status.strip()}}</td>
                     <td>{{i.month.strip()}}</td>
-                    <td><a id="{{ i.id }}" class="btn btn-md btn-primary" href="{{ url_for('editCrime',id=i.id }}">DETAILS</a></td>
+                    <td><a id="{{ i.id }}" class="btn btn-md btn-primary" href="{{ url_for('editCrime',id=i.id) }}">DETAILS</a></td>
                 </tr>
             {% endfor %}
         </tbody>
