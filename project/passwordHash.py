@@ -7,7 +7,7 @@ def hashPassword(pwd):
     return hashed
 
 def passwordCheck(pwd, hashedpwd):
-    resp = bcrypt.checkpw(pwd,hashedpwd)
+    resp = bcrypt.checkpw(pwd.encode('utf-8'),hashedpwd.decode('utf-8'))
     if resp:
         return True
     else:
