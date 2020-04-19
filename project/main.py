@@ -3,7 +3,6 @@ import requests
 import userClasses
 import passwordHash
 import task
-import numpy as np
 
 app = Flask(__name__)
 app.secret_key = "Jesus"
