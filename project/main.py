@@ -44,16 +44,16 @@ def login(name=None):
         usr = request.form['userName']
         password = request.form['password']
         resp = userClasses.verUser(usr)
-        resp = resp.unicode("utf-8")
         if resp != '':
-            ver = passwordHash.passwordCheck(password, resp) 
-            if ver:
-                session['usr'] = usr
-                flash('You have been logged in successfully' , 'info')
-                return  redirect(url_for('home'))
-            else:
-                flash('User name or password incorrect' , 'error')
-                return render_template('login.html')  
+            return resp.encode('utf-8')
+            # ver = passwordHash.passwordCheck(password, resp) 
+            # if ver:
+            #     session['usr'] = usr
+            #     flash('You have been logged in successfully' , 'info')
+            #     return  redirect(url_for('home'))
+            # else:
+            #     flash('User name or password incorrect' , 'error')
+            #     return render_template('login.html')  
         else:
             flash('User name or password incorrect' , 'error')
             return render_template('login.html')        
