@@ -29,7 +29,7 @@ class users(Base):
 def addUser(obj):
     pwd = passwordHash.hashPassword(obj['password'])
     date1 = date.today().strftime('%d/%m/%Y')
-    usr = users(name=obj['firstName'],lastname=obj['lastName'], email=obj['email'], username=obj['username'], password=pwd.decode('utf-8'),date=date1)
+    usr = users(name=obj['firstName'],lastname=obj['lastName'], email=obj['email'], username=obj['username'], password=pwd,date=date1)
     session.add(usr)
     session.commit()
 
