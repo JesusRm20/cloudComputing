@@ -1,15 +1,15 @@
-import bcrypt
+from passlib.hash import sha256_crypt
 
 def hashPassword(pwd):
-    password = pwd.encode('utf-8')
-    hashed = bcrypt.hashpw(password,bcrypt.gensalt())
+    passwd = sha256_crypt.hash(str(pwd))
 
-    return hashed.encode('utf-8')
+    return passwd
 
 def passwordCheck(pwd, hashedpwd):
-    resp = bcrypt.checkpw(pwd.encode('utf-8'),hashedpwd.encode('utf-8'))
+
+    password = pwd.encode('utf-8')
+    resp = sha256_crypt.verify(password, hashedpwd)
     if resp:
         return True
     else:
         return False
-
