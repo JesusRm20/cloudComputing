@@ -8,7 +8,7 @@ This document describes the resources that make up the project. The project cons
 
 <table>
     <tr>
-        <td rowspan=8 width=40%> <img src='C:\Users\Jesus Sicairos\Desktop\Structure.png' width=100% /></td>
+        <td rowspan=8 width=40%> <img src='webApp\Structure.png' width=100% /></td>
         <td>* db/ <br>
             in this folder we can find a .sql file which has the script to create the tables used for this app.
         </td>
@@ -57,6 +57,7 @@ This document describes the resources that make up the project. The project cons
     </tr>
 </table>
 
+
 <h2>Requirements:</h2>
 
 In order for the project to run smoothly the following elements are require:
@@ -78,7 +79,7 @@ The app consists of 5 different forms. Each of which is in charge of performing 
 
 This is the firs form that loads when the someone access to my app through a web browser.
 
-<img src="C:\Users\Jesus Sicairos\Desktop\webApp\logIn.png" style="zoom:70%;" />
+<img src="webApp\logIn.png" style="zoom:70%;" />
 
 Here the users have to authenticate themselves in order to gain access to the rest of the app. In case that they do not have a user account they have the option to create one just by going to the sign up page.
 
@@ -86,25 +87,25 @@ Here the users have to authenticate themselves in order to gain access to the re
 
 When a user wants to create an account they just need to go to the sign up page fill in the details asked for in the form and click the sign up button.
 
-<img src="C:\Users\Jesus Sicairos\Desktop\webApp\signUp.png" style="zoom:70%;" />
+<img src="webApp\signUp.png" style="zoom:70%;" />
 
 <h4>List Crimes Form:</h4>
 
 This form will show a list of crimes to the user in case that there are some loaded to the database, once it logs in. In case that there are no crimes loaded in the database there is an option where a user can go to load crimes. In this form we have a search bar that helps us to search for crimes of a specific date. Just as a note all dates in the app are worked in the format of YYYY-MM. Here we also have an option to view the details of a specific crime. If we press the details button the server will take us to the form where the details of that crime are shown.
 
-<img src="C:\Users\Jesus Sicairos\Desktop\webApp\listOfCrimes.png" style="zoom:70%;" />
+<img src="webApp\listOfCrimes.png" style="zoom:70%;" />
 
 <h4>Load Crimes Form:</h4>
 
 This form allows the user to load crimes that happened in a certain date to the database, as long as they are not already store in the database. If the user inputs a date that already exists in the database the form will let the user that those crimes are already loaded and will let they try another date.
 
-<img src="C:\Users\Jesus Sicairos\Desktop\webApp\loadCrimes.png" style="zoom:70%;" />
+<img src="webApp\loadCrimes.png" style="zoom:70%;" />
 
 <h4>Edit Crime Form:</h4>
 
 In this form the user will be able to visualize the details of a specific crime as well as the outcomes that this crime has had. In this form the user has an option to edit the crime's detail and even delete outcomes for this crime. Once the user presses the edit button all the fields that can be modified will be enable letting the user change their values. When the user has finished changing everything they only have to press the save button and the changes will be applied in the database.
 
-<img src="C:\Users\Jesus Sicairos\Desktop\webApp\editCrime.png" style="zoom:70%;" />
+<img src="webApp\editCrime.png" style="zoom:70%;" />
 
 <h2>Descriptions of Methods Implemented:</h2>
 
@@ -184,7 +185,7 @@ sudo docker run -p 5432:5432 --name=postgres-db postgres:latest
 
 Once done that a new container with the name postgresDB will be running in our system. We can verify that the newly created is in fact running just by running the following command:
 
-![](C:\Users\Jesus Sicairos\Desktop\webApp\dockerps.png)
+![](webApp\dockerps.png)
 
 Next we proceed to create the database, as well as the tables needed for our APP to run.
 
@@ -211,7 +212,7 @@ One more thing that we need to be sure of is that we also have our requirements.
 
 After we run the command we can check that our image has been created by running the following command:
 
-![](C:\Users\Jesus Sicairos\Desktop\webApp\dockerImages.png)
+![](webApp\dockerImages.png)
 
 Once we have the image ready, we proceed to start a new container running the image that we just created. To do that we just run the following command:
 
@@ -221,7 +222,7 @@ sudo docker run -d -p 80:80 --name=cloudFinal cloudproject:v3
 
 Here in the --name flag we specify the name we want our container to have. And we can check that our new container is running in parallel with our database container by running the following command:
 
-![](C:\Users\Jesus Sicairos\Desktop\webApp\dockerps2.png)
+![](webApp\dockerps2.png)
 
 After verifying that our two containers are up and running, our APP is ready. We just need to go to the browser and go to the following URL:
 
