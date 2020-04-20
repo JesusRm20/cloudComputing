@@ -1,6 +1,1 @@
-project/db/cloudCompProject.db
-project/db/database.sql
-project/db/usersDatabase.sql
-project/db/usersDb.db
-project/sqltools_20200418222108_5952.log
-project/flaskpm.py
+__pycache__
