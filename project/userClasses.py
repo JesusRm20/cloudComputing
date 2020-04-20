@@ -8,7 +8,7 @@ import passwordHash
 
 Base = declarative_base()
 
-engine = create_engine("postgresql://postgres:password@localhost/cloudComputing")
+engine = create_engine("postgresql://postgres:password@172.17.0.2/cloudComputing")
 session = sessionmaker(bind=engine)()
 
 class users(Base):
