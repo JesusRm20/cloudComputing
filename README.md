@@ -226,5 +226,5 @@ Here in the --name flag we specify the name we want our container to have. And w
 
 After verifying that our two containers are up and running, our APP is ready. We just need to go to the browser and go to the following URL:
 
-<a href="http://52.44.115.187/">Go to Page</a>
+<a href="http://52.44.115.187/" target="_blank" >Go to Page</a>
 
