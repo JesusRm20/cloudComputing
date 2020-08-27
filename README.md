@@ -227,6 +227,6 @@ Here in the --name flag we specify the name we want our container to have. And w
 After verifying that our two containers are up and running, our APP is ready. We just need to go to the browser and go to the following URL:
 
 ```html
-http://ec2-54-166-176-148.compute-1.amazonaws.com/
+http://52.44.115.187/
 ```
 
