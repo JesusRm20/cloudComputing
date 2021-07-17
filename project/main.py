@@ -4,7 +4,7 @@ import userClasses
 import passwordHash
 import task
 
-app = Flask(__name__)
+app = flask(__name__)
 app.secret_key = "Jesus"
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -137,6 +137,30 @@ def editCrime(id):
             return  redirect(url_for('login'))
     
     return render_template('editCrime.html', crime={'details':crimeDetails,'outcomes':crimeOutcomes}) 
+
+@app.route('/agregarUsuario', methods=['GET', 'POST'])
+def agregarUsuario():
+    if request.method == 'POST':
+        data = request.form.to_dict()
+        resp = usr.agregarUsuarios(data)
+        
+        return resp
+
+@app.route('/registrarAccion', methods=['GET', 'POST'])
+def registrarAccion():
+    if request.method == 'POST':
+        data = request.form.to_dict()
+        resp = usr.insertarAccion(data)
+        
+        return resp
+
+@app.route('/actualizarMembresia', methods=['GET', 'POST'])
+def actualizarMembresia():
+    if request.method == 'POST':
+        data = request.form.to_dict()
+        resp = usr.actualizarMembresia(data['usr'], data['tipo'])
+        
+        return resp
 
 if __name__ == '__main__':
 	app.run(host='0.0.0.0', port=80, debug=True)
